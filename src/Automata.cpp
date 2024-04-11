@@ -21,8 +21,7 @@ void Automata::on() {
     if (state == OFF) {
         state = WAIT;
         std::cout << "Кофейный аппарат готов к работе" << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Кофейный аппарат включен" << std::endl;
     }
 }
@@ -30,8 +29,7 @@ void Automata::off() {
     if (state == WAIT) {
         state = OFF;
         std::cout << "Кофейный аппарат выключен" << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Кофейный аппарат нельзя включить" << std::endl;
     }
 }
@@ -41,8 +39,7 @@ void Automata::getMenu() {
             std::cout << i + 1 << ") " << menu[i]
                 << " - " << prices[i] << ";" << std::endl;
         }
-    }
-    else {
+    } else {
         std::cout << "Данная операция невозможна" << std::endl;
     }
 }
@@ -51,8 +48,7 @@ void Automata::coin(int money) {
         state = ACCEPT;
         cash += money;
         std::cout << "Внесенная сумма: " << cash << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Данная операция невозможна" << std::endl;
     }
 }
@@ -63,15 +59,13 @@ void Automata::choice(int choice) {
     if (state == ACCEPT) {
         if (choice < 1 || choice > menu.size()) {
             std::cout << "Неверный номер" << std::endl;
-        }
-        else {
+        } else {
             state = CHECK;
             if (check(choice)) {
                 cook(choice);
             }
         }
-    }
-    else {
+    } else {
         std::cout << "Данная операция невозможна" << std::endl;
     }
 }
@@ -88,8 +82,7 @@ void Automata::cancel() {
         state = WAIT;
         cash = 0;
         std::cout << "Отменить" << std::endl;
-    }
-    else {
+    } else {
         std::cout << "Данная операция невозможна" << std::endl;
     }
 }
@@ -99,8 +92,7 @@ void Automata::cook(int choice) {
         cash -= prices[choice - 1];
         std::cout << "Ваш напиток уже готовится. Ожидайте" << std::endl;
         finish(choice);
-    }
-    else {
+    } else {
         std::cout << "Данная операция невозможна" << std::endl;
     }
 }
@@ -110,8 +102,7 @@ void Automata::finish(int choice) {
         std::cout << "Ваш напиток готов, вы можете его забрать" << std::endl;
         cash = 0;
         state = WAIT;
-    }
-    else {
+    } else {
         std::cout << "Данная операция невозможна" << std::endl;
     }
 }
